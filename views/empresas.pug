@@ -1,0 +1,14 @@
+extends layout
+
+include mixins/grabarempresas
+
+block contenido
+    .content
+        .container-fluid
+            .row
+                .col-lg-12
+                    if validacionesGrabar
+                        each error in validacionesGrabar
+                            .alert.alert-danger(role="alert")=error.texto
+
+                    +grabarempresas(empresa)

@@ -1,0 +1,31 @@
+Guia de Proyecto
+  0. Tener claro que toca instalar primero node.js y un buen editor de c�digo (Visual Code Recomendable).
+	0.1 Compruebe la instalaci�n en CMD con "node -v"
+  1. Crear Carpeta de Proyecto a Trabajar y dentro de este un archivo index.js
+  2. Abrir Consola y dirigirse a la ruta del proyecto, una vez este en este ejecutar en la consola
+     el comando npm init y si es flojo solo dar enter, enter a casa paso y al final YES. Se creara el siguiente archivo package.json
+  3. Instalar en el proyecto Express y Nodemon con los siguientes comandos en la consola de nuestro editor de c?digo:
+	* npm install --save express
+	* npm install --save -dev nodemon
+  4. En el archivo buscar la etiqueta script { "Borrar lo que se encuentre aqui" }.
+	* Reemplazar por "start": "nodemon ./index.js".
+	* Donde START puede es como ustedes deseen llamarlo, pero ese es recomendable
+ 	* Y ./index.js es el primer archivo que creamos
+  5. En index.js instancia las siguiente variables
+	* const express = require('express'); --> Instancia de express para su uso
+	* const app = express(); //llamar variables "express" como funci�n para iniciarlo
+	* app.listen(2020); //este es el puerto.
+  6. Ya es todo, si quiere instale lo siguiente desde la terminal
+	* instalar pug --> npm install --save pug
+	* npm install --save mysql2 sequelize
+	* npm install --save express-validator
+	* npm install --save slug
+	* npm install --save shortid
+	Listo, ya es cuesti�n suya crear nuevas carpetas, recomendadas
+	   * config
+	   * controllers
+	   * models
+	   * public
+	   * routes
+	   * views
+	El resto es investigar, ��CHAOOO!!

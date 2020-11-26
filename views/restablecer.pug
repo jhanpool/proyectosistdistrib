@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        include partials/header
+        link(rel="stylesheet", href="/css/acceso.css")
+
+    body
+        .container
+            .d-flex.justify-content-center.h-100
+                .card
+                    .card-header.text-center
+                        h2 Recuperar Contraseña
+
+                    .card-body
+                        form(method="POST" action="/restablecer")
+                            .input-group.form-group
+                                .input-group-prepend
+                                    span.input-group-text
+                                        i.fa.fa-envelope-o
+                                input.form-control(type="email" id="correo" name="correo" value=correo placeholder="Ingresar Email")
+
+                            .form-group
+                                input.btn.float-right.acceso_btn(type="submit" value="Restablecer")
+                        br
+                        br
+                        if locals.mensajes
+                            each categoria in Object.keys(locals.mensajes)
+                                each error in mensajes[categoria]
+                                    //.alert.alert-danger.alert-dismissible.fade.show(role="alert")
+                                    .alert(class=`${categoria}` role="alert")
+                                        strong=error
+                                        button.close(type="button" data-dismiss="alert" aria-label="Close")
+                                            span(aria-hidden="true") ×
+
+                    .card-footer
+                        .d-flex.justify-content-center.links
+                            | Volver al 
+                            a(href="/iniciarsesion") Iniciar Sesión
+
+        include partials/footer

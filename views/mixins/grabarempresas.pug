@@ -1,0 +1,37 @@
+mixin grabarempresas(empresa = {})
+
+    form(action=`/nuevaempresa/${empresa.idempresa || ''}` method="POST")
+            .card.card-success
+                .card-header
+                    h3.card-title Registro de Empresas
+
+                .card-body
+                    .form-row
+                        .form-group.col-6
+                            select.form-control(type="text" id="tipodocum" name="tipodocum" placeholder="Razón Social" enable="false")
+                                option(value="NIT") Nit Empresa
+
+                        .form-group.col-6
+                            input.form-control(type="text" value=empresa.nrodocum id="nrodocum" name="nrodocum" placeholder="Número de Nit" maxlength="20")
+
+                        .form-group.col-6
+                            input.form-control(type="text" value=empresa.razonsocial id="razonsocial" name="razonsocial" placeholder="Razón Social" maxlength="300")
+
+                        .form-group.col-6
+                            input.form-control(type="text" value=empresa.direccion id="direccion" name="direccion" placeholder="Dirección" maxlength="50")
+
+                        .form-group.col-6
+                            input.form-control(type="number" value=empresa.codubicaciudad id="codubicaciudad" name="codubicaciudad" placeholder="Código Ciudad" maxlength="10")
+
+                        .form-group.col-6
+                            input.form-control(type="number" value=empresa.codubicabarrio id="codubicabarrio" name="codubicabarrio" placeholder="Código Barrio" maxlength="10")
+
+                        .form-group.col-6
+                            input.form-control(type="email" value=empresa.email id="email" name="email" placeholder="Correo Electrónico" maxlength="150")
+
+                        .form-group.col-6
+                            input.form-control(type="number" value=empresa.telfijo id="telfijo" name="telfijo" placeholder="Teléfono Fijo" maxlength="10")
+
+                .card-footer
+                    input(type="submit" value=`${empresa.razonsocial ? 'Guardar': 'Agregar'}` class="btn btn-success")
+                    a.btn.btn-danger.float-right(type="button" href="/") Cancelar

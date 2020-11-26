@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        style
+            include ./email.css
+
+    body
+        h2 Restablecer Clave
+        p Hola has solicitado restablecer tu clave, haz click aquí
+        a(href=`${resetUrl}`) Ir a Resetear la Clave
+        p si no puedes acceder al enlace visita #{resetUrl}
+        p si no solicitaste este email, por favor ignorar.

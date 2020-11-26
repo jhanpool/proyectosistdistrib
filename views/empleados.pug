@@ -1,0 +1,118 @@
+extends layout
+
+block contenido
+    //ACCIONES PARA EMPRESAS (UPDATE-DELETE) Y ENLAZAR EMPLEADOS A ESTAS
+    .content
+        .container-fluid
+            .row
+                .col-lg-4
+                    .card.card-success(style="height:95%")
+                        .card-header
+                            h3.card-title=empresa.razonsocial
+
+                        .card-body
+                            .form-group
+                                .text-center
+                                    img.rounded(src="/multimedia/images/png/saludosimple_00.png" style="width:120px; height:120px")
+
+                            .form-group
+                                a(href=`/empresa/editar/${empresa.idempresa}` class="btn btn-primary") Editar Empresa
+                                button#eliminar-empresa(data-idempresa_pk=empresa.idempresa type="button" class="btn btn-danger float-right") Eliminar Empresa
+
+                .col-lg-8
+                    if validGrabarEmpl
+                        each error in validGrabarEmpl
+                            .alert.alert-danger(role="alert")=error.texto
+
+                    form(action=`/empresas/${empresa.idempresa || ''}` method="POST")
+                        .card.card-secondary
+                            .card-header
+                                h4.card-title Registrar Empleados
+                                
+                            .card-body
+                                .form-row
+                                    .form-group.col-6
+                                        select.form-control(type="text" id="tipodocum" name="tipodocum" placeholder="Razón Social" enable="false")
+                                            option(value="CC") Cedula de Ciudadania
+                                            option(value="CE") Cedula de Extranjeria
+
+                                    .form-group.col-6
+                                        input.form-control(type="text" id="nrodocum" name="nrodocum" placeholder="Número de Nit" maxlength="20" required)
+
+                                    .form-group.col-6
+                                        input.form-control(type="text" id="prinom" name="prinom" placeholder="Primer Nombre" maxlength="150" required)
+
+                                    .form-group.col-6
+                                        input.form-control(type="text" id="segnom" name="segnom" placeholder="Segundo Nombre" maxlength="150")
+
+                                    .form-group.col-6
+                                        input.form-control(type="text" id="priape" name="priape" placeholder="Primer Apellido" maxlength="150" required)
+
+                                    .form-group.col-6
+                                        input.form-control(type="text" id="segape" name="segape" placeholder="Segundo Apellido" maxlength="150")
+
+
+                            .card-footer
+                                input(type="submit" value="Agregar" class="btn btn-success float-right")
+
+                .col-lg
+                    .card.card-info
+                        .card-header
+                            h3.card-title Lista de Empleados
+
+                        .card-body
+                            .text-center
+                                a.btn.btn-app(style="pointer-events:none;")
+                                    span#empacti.badge.bg-success 0
+                                    i.fa.fa-user-plus
+                                    |  Activos
+
+                                a.btn.btn-app(style="pointer-events:none;")
+                                    span#empinact.badge.bg-danger 0
+                                    i.fa.fa-user-times
+                                    |  Inactivos
+                            br
+
+                            table#tbempleados.table.table-bordered.table-hover
+                                thead
+                                    tr
+                                        th Documento
+                                        th Nro Docum
+                                        th Nombres
+                                        th Apellidos
+                                        th Estado
+                                        th Operaciones
+
+                                tbody
+                                    if empleados.length
+                                        each lista in empleados
+                                            tr(data-empleados=lista.idempleado data-infoempleado=lista.tipodocum + " " + lista.nrodocum + "-" + lista.prinom + " " + lista.segnom)
+                                                td=lista.tipodocum
+                                                td=lista.nrodocum
+                                                td=lista.prinom + " " + lista.segnom
+                                                td=lista.priape + " " + lista.segape
+                                                td
+                                                    if lista.estado
+                                                        button.estempl.btn.btn-success(type="button")
+                                                            | Activo 
+                                                            i.fa.fa-user-plus(aria-hidden="true")
+                                                    else
+                                                        button.estempl.btn.btn-secondary(type="button")
+                                                            | Inactivo 
+                                                            i.fa.fa-user-times(aria-hidden="true")
+                                                td
+                                                    button.btn.btn-danger(type="button")
+                                                        | Eliminar 
+                                                        i.fa.fa-trash(aria-hidden="true")
+                                    else
+                                        tr
+                                            td(colspan="6") No hay empleados registrados
+
+                                tfoot
+                                    tr
+                                        th Documento
+                                        th Nro Docum
+                                        th Nombres
+                                        th Apellidos
+                                        th Estado
+                                        th Operaciones

@@ -1,0 +1,21 @@
+table {
+    table-layout: fixed;
+    /*width: 100%;*/
+}
+
+th, td { /*width: some_value;*/ word-wrap: break-word; }
+
+/*.alert-fixed {
+    position:fixed; 
+    top: 0px; 
+    left: 0px; 
+    width: 100%;
+    z-index:9999; 
+    border-radius:0px
+}*/
+
+.sin-enlace {
+    pointer-events: none;
+    cursor: default;
+    color: #000;
+}

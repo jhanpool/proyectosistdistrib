@@ -1,0 +1,48 @@
+extends layout
+
+block contenido
+    .content
+        .container-fluid
+            .row
+                .col-lg
+                    .card.card-info
+                        .card-header
+                            h3.card-title Lista de Empresas Registradas
+
+                        .card-body
+                            table.table.table-bordered.table-hover
+                                thead
+                                    tr
+                                        th Acción
+                                        th Documento
+                                        th Nro Docum
+                                        th Razón Social
+                                        th Dirección
+                                        th Correo
+                                        th Fijo
+
+                                tbody
+                                    if(empresas)
+                                        each lista in empresas
+                                            tr
+                                                td
+                                                    a(href=`/empresas/${lista.idempresa}` class="btn btn-success") Editar
+                                                td=lista.tipodocum
+                                                td=lista.nrodocum
+                                                td=lista.razonsocial
+                                                td=lista.direccion
+                                                td=lista.email
+                                                td=lista.telfijo
+                                    else
+                                        tr
+                                            td(colspan="7") No hay empresas registrados
+
+                                tfoot
+                                    tr
+                                        th Acción
+                                        th Documento
+                                        th Nro Docum
+                                        th Razón Social
+                                        th Dirección
+                                        th Correo
+                                        th Fijo
